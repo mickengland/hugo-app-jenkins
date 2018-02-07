@@ -14,28 +14,7 @@ podTemplate(label: 'pod-hugo-app', containers: [
         def DOCKER_IMAGE_NAME = 'hugo-app-jenkins'
         def K8S_DEPLOYMENT_NAME = 'hugo-app'
 
-
- stage('do some Docker work') {
-            container('docker') {
-
-                withCredentials([[$class: 'UsernamePasswordMultiBinding',
-                        credentialsId: 'MEDockerHub',
-                        usernameVariable: 'DOCKER_HUB_USER',
-                        passwordVariable: 'DOCKER_HUB_PASSWORD']]) {
-
-                    sh """
-                        docker pull ubuntu
-                        docker tag ubuntu ${env.DOCKER_HUB_USER}/ubuntu:${env.BUILD_NUMBER}
-                        """
-                    sh "docker login -u ${env.DOCKER_HUB_USER} -p ${env.DOCKER_HUB_PASSWORD} "
-                    sh "docker push ${env.DOCKER_HUB_USER}/ubuntu:${env.BUILD_NUMBER} "
-                }
-            }
-        }
-
-
-
-        stage('Clone Hug App Repository') {
+        stage('Clone Hugo App Repository') {
             checkout scm
 
             containter('hugo')
