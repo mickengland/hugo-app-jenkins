@@ -18,7 +18,7 @@ podTemplate(label: 'pod-hugo-app', containers: [
         stage('Clone Hugo App Repository') {
             checkout scm
 
-            containter('hugo')
+            container('hugo')
                stage('Build Hugo Site') {
                     sh ("hugo --uglyURLs") 
                }
