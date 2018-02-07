@@ -60,5 +60,3 @@ podTemplate(label: 'pod-hugo-app', containers: [
       }
     }
   }
-}
-
